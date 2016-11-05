@@ -158,6 +158,10 @@
                 <label class="attribute"><i class="fa fa-group"></i> Joined UPE:</label>
                 <a href="#" id="year_joined">{{ up.get_year_joined_display }}</a>
             </li>
+            <li>
+                <label class="attribute"><i class="fa fa-group"></i> Flag:</label>
+                <a href="#" id="flag_type">{{ up.get_flag_type_display }}</a>
+            </li>
         </ul>
 
         <div class="modal fade" id="resume-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -221,6 +225,19 @@ $.ajaxSetup({
     }
 });
 
+
+var FLAG_TYPES = [
+{value: '0', text: '0'},
+{value: '1', text: '1'},
+{value: '2', text: '2'},
+{value: '3', text: '3'},
+{value: '4', text: '4'},
+{value: '5', text: '5'},
+{value: '6', text: '6'},
+{value: '7', text: '7'},
+{value: '8', text: '8'},
+{value: '9', text: '9'},
+{value: '10', text: '10'}];
 
 var GRAD_YEARS = [
 {value: '95', text: '1995'},
@@ -318,6 +335,13 @@ $(document).ready(function() {
         type: 'select',
         pk: 1,
         source: YEAR_JOINED,
+        url: '/myprofile/',
+        title: 'Choose Year Joined',
+    });
+    $('#flag_type').editable({
+        type: 'select',
+        pk: 1,
+        source: FLAG_TYPES,
         url: '/myprofile/',
         title: 'Choose Year Joined',
     });

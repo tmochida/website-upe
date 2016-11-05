@@ -268,9 +268,17 @@ def myprofile(request):
         elif request.POST['name'] == 'grad_year':
             up.grad_year = request.POST['value']
             up.save()
+        elif request.POST['name'] == 'flag_type':
+            up.flag_type = request.POST['value']
+            up.save()
     return render_to_response('users/profile.html',
             context_instance=RequestContext(request,{ 'bio': bio_form, 'up': up, 'resume_upload': resume_form, 'profile_pic': profile_pic_form }))
 
+def magic(request):
+    user = request.user
+    up = UserProfile.objects.get(user=user)
+    return render_to_response('users/magic.html',
+        context_instance=RequestContext(request,{ 'user': user, 'up': up }))
 
 @user_passes_test(lambda u: UserProfile.objects.get(user=u).user_type == 3, login_url='/login/')
 def approve_user(request, user_id):
