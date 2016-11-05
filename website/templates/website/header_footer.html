@@ -39,6 +39,9 @@
                 <li><a href="/officers">Officers</a></li>
                 <li><a href="/members">Members</a></li>
                 <li><a href="/alumni">Alumni</a></li>
+                {% if user.is_authenticated and up.has_special_flag %}
+                <li><a href="/magic">Magic</a></li>
+                {% endif %}
             </ul>
           </li>
           <li class="header-section">
