@@ -26,6 +26,8 @@ urlpatterns = patterns('',
     url(r'^accounts/password_reset', 'django.contrib.auth.views.password_reset', {'template_name': 'users/password_reset_form.html'}),
     url(r'^accounts/', include('django.contrib.auth.urls')),
 
+    url(r'^magic/$', 'users.views.magic', name='magic'),
+
     url(r'^approval_dashboard/$', 'users.views.officer_approval_dashboard', name='officer_approval_dashboard'),
     url(r'approve_user/(?P<user_id>[0-9]+)/$', 'users.views.approve_user', name='approve_user'),
     url(r'reject_user/(?P<user_id>[0-9]+)/$', 'users.views.reject_user', name='reject_user'),
