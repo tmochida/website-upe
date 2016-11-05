@@ -22,10 +22,12 @@ class UserProfile(models.Model):
         ('WEB', 'Web Development'),
     )
     GRAD_YEARS = ((year[2:], year) for year in YEAR_STRINGS(3))
+    FLAG_TYPES = ((i, i) for i in range(10))
     YEAR_JOINED = SEMESTERS
 
     user = models.OneToOneField(User)
     user_type = models.IntegerField(max_length=1, choices=USER_TYPES, default=1, verbose_name='You are a(n)')
+    flag_type = models.IntegerField(choices=FLAG_TYPES, default=0, verbose_name='Your flag is')
     committee = models.CharField(max_length=50, choices = COMMITTEE_CHOICES, default='NONE',verbose_name = 'What committee are you in?')
     grad_year = models.CharField(max_length=4, choices=GRAD_YEARS, default='15', verbose_name='When are you graduating | When did you graduate?')
     year_joined = models.CharField(max_length=11, choices=YEAR_JOINED, default='F14', verbose_name='When did you join UPE?')
@@ -48,6 +50,9 @@ class UserProfile(models.Model):
         for tup in self.COMMITTEE_CHOICES:
             if self.committee == tup[0]:
                 return tup[1]
+
+    def has_special_flag(self):
+      return self.flag_type == 2
 
 # EVERYTHING BELOW IS FOR LATER.
 
