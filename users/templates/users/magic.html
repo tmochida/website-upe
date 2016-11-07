@@ -16,9 +16,13 @@
 <div class="content-container">
     <span class="login">Magic</span>
     <div>
+        {% if user.is_authenticated %}
         <ul>
-            GG
+            Hello {{ user.first_name }}, your flag is {{ up.flag_type }}
         </ul>
+        {% else %}
+            You must log in
+        {% endif %}
     </div>
 </div>
 {% endblock %}
